@@ -1,6 +1,6 @@
 // test/index.spec.ts
 import anyTest, { TestInterface } from "ava"
-import { ConsoleLog, Miniflare } from "miniflare"
+import { Miniflare, Log, LogLevel } from "miniflare"
 import { rest } from 'msw'
 import { setupServer } from 'msw/node'
 
@@ -35,7 +35,10 @@ test.beforeEach((t) => {
         buildCommand: undefined,
         https: true,
         scriptPath: 'dist/worker.js',
-        log: new ConsoleLog(true)
+        wranglerConfigPath: true,
+        packagePath: true,
+        envPath: true,
+        log: new Log(LogLevel.DEBUG)
     })
     t.context = { mf }
 })
